@@ -1,0 +1,5 @@
+- hosts: bastion
+  gather_facts: false 
+  become: yes 
+  roles:
+    - config-tower
