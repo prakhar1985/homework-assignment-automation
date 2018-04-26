@@ -1,0 +1,40 @@
+- name: Setup Yum repos 
+  shell: scp ctrl.example.com:/etc/yum.repos.d/open.repo /etc/yum.repos.d/open.repo
+- name: Setup SSH keys for cloud-user
+  authorized_key:
+     user: cloud-user
+     state: present
+     key: http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pub
+- name: Install EPEL repos 
+  yum:
+     name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+     state: present 
+- name: Install required packages 
+  yum: 
+     name: "{{item}}"
+     state: latest 
+  loop: 
+    - python 
+    - python-pip 
+    - python-devel 
+    - gcc 
+    - ansible 
+    - python-openstackclient
+- name: Install shade library
+  pip:
+    name: shade 
+    state: latest
+- name: Create clouds.yaml file
+  blockinfile:
+    create: yes
+    path: /etc/openstack/clouds.yaml
+    block: |2
+      clouds:
+        ospcloud:
+          auth:
+            auth_url: http://192.168.0.20:5000/
+            password: r3dh4t1!
+            project_name: admin
+            username: admin
+          identity_api_version: '3.0'
+          region_name: RegionOne

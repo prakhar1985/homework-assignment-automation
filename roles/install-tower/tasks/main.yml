@@ -1,0 +1,4 @@
+---
+# tasks file for install-tower
+- include_tasks: setup-tower-bastion.yml
+- include_tasks: install_tower.yml

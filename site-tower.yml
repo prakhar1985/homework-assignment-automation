@@ -1,0 +1,4 @@
+- hosts: bastion
+  become: yes 
+  roles:
+    - install-tower
