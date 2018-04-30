@@ -1,0 +1,25 @@
+- name: Create Homework Assignment project 
+  command: |
+    tower-cli project create --organization="{{org_name}}" --scm-type=git --scm-branch="{{scm_branch}}" --scm-url="{{ scm_url }}" --scm-update-on-launch=True -n "{{ proj_name }}"
+
+- name: Download Credential file 
+  copy:
+    src: workstation_creds.json
+    dest: /root/workstation_creds.json
+
+- name: Create credential to connect to workstation
+  command: |
+    tower-cli credential create --name "{{ssh_cred_name}}" --organization "{{org_name}}" --credential-type Machine --inputs=@/root/workstation_creds.json
+
+- name: Delete credential file
+  file:
+    path: /root/workstation_creds.json
+    state: absent
+
+- name: Create Inventory for SCM 
+  command: |
+    tower-cli inventory create -n "{{static_inventory_name}}" --organization "{{org_name}}"
+
+- name: Create SCM Inventory source 
+  command: |
+    tower-cli inventory_source create --inventory "{{static_inventory_name}}"  --name {{inventory_source_name}} --source scm --source-project "{{proj_name}}" --source-path "{{inventory_file_name}}" --overwrite-vars true

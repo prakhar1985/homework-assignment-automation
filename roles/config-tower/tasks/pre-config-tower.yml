@@ -31,3 +31,8 @@
 - name: Add the tower license 
   command: |
     tower-cli setting modify LICENSE @/root/license.txt
+
+- name: Remove License file
+  file:
+   path: /root/license.txt
+   state: absent
