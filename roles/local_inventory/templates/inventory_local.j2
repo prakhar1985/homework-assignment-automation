@@ -1,0 +1,10 @@
+[bastion_tower]
+bastion.{{tower_GUID}}.example.opentlc.com 
+
+[workstation]
+workstation-{{osp_GUID}}.rhpds.opentlc.com
+
+[all:vars]
+ansible_user={{sso_login}}
+ansible_ssh_private_key_file={{path_to_sso_key}} 
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'

@@ -1,0 +1,6 @@
+---
+# tasks file for roles/local_inventory
+- name: Create local inventory file
+  template:
+    src: inventory_local.j2
+    dest: "{{workdir}}/inventory_local"
