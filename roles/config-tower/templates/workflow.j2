@@ -1,7 +1,5 @@
 - project: "{{proj_name}}"
   success:
-  - inventory_source: "{{inventory_source_name}}"
+  - job_template: "{{job_template_name_osp_infra}}"
     success:
-    - job_template: "{{job_template_name_osp_infra}}"
-      success:
-      - job_template: "{{job_template_name_osp_instances}}"
+    - job_template: "{{job_template_name_osp_instances}}"

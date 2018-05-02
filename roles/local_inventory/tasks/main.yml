@@ -9,8 +9,3 @@
   template:
     src: inventory_local.j2
     dest: "{{workdir}}/inventory/inventory_local"
-
-- name: Create osp workstation tower inventory 
-  template:
-    src: inventory_workstation.j2
-    dest: "{{workdir}}/inventory/inventory_workstation"

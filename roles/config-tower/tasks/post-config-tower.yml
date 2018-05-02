@@ -20,6 +20,14 @@
   command: |
     tower-cli inventory create -n "{{static_inventory_name}}" --organization "{{org_name}}"
 
-- name: Create SCM Inventory source 
+- name: Create Group in static inventory 
   command: |
-    tower-cli inventory_source create --inventory "{{static_inventory_name}}"  --name {{inventory_source_name}} --source scm --source-project "{{proj_name}}" --source-path "{{inventory_file_name}}" --overwrite-vars true
+    tower-cli group create --inventory "{{static_inventory_name}}"  --name {{group_name}}
+
+- name: Add workstation host in tower_inventory 
+  command: |
+    tower-cli host create --inventory "{{static_inventory_name}}" --name "{{host_name}}"
+
+- name: Associate workstation host to group 
+  command: | 
+    tower-cli host associate --inventory "{{static_inventory_name}}" --host "{{host_name}}" --group "{{group_name}}"

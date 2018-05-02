@@ -9,8 +9,6 @@ password: r3dh4t1!
 ssh_cred_name: "Connect_to_workstation"
 user_cred_name: "cloud-user"
 user_cred_path: "/root/.ssh/openstack.pem"
-inventory_source_name: "bastion_workstation"
-inventory_file_name: "inventory/inventory_workstation"
 static_inventory_name: scm_inventory
 job_template_name_osp_infra: osp_infra
 instance_group_name: osp
@@ -18,3 +16,5 @@ osp_infra_playbook: site-osp-infra.yml
 workflow_template_name: cicd_workflow
 job_template_name_osp_instances: create-osp-instances
 osp_instances_playbook: site-osp-instances.yml
+group_name: workstation
+host_name: workstation-{{osp_GUID}}.rhpds.opentlc.com
