@@ -14,5 +14,7 @@ inventory_file_name: "inventory_local"
 static_inventory_name: scm_inventory
 job_template_name_osp_infra: osp_infra
 instance_group_name: osp
-osp_infra_playbook: site-osp.yml
+osp_infra_playbook: site-osp-infra.yml
 workflow_template_name: cicd_workflow
+job_template_name_osp_instances: create-osp-instances
+osp_instances_playbook: site-osp-instances.yml
