@@ -10,7 +10,7 @@ ssh_cred_name: "Connect_to_workstation"
 user_cred_name: "cloud-user"
 user_cred_path: "/root/.ssh/openstack.pem"
 inventory_source_name: "bastion_workstation"
-inventory_file_name: "inventory_local"
+inventory_file_name: "inventory_workstation"
 static_inventory_name: scm_inventory
 job_template_name_osp_infra: osp_infra
 instance_group_name: osp
