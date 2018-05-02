@@ -1,6 +1,5 @@
 - hosts: localhost
-  connection: local
-  become: yes 
+  connection: local 
   roles:
     - setup-workstation
     - osp-setup
