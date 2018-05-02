@@ -1,11 +1,16 @@
 ---
 # tasks file for roles/local_inventory
+- name: Create inventory directory
+  file:
+    path: "{{workdir}}/inventory"
+    state: directory
+
 - name: Create local inventory file
   template:
     src: inventory_local.j2
-    dest: "{{workdir}}/inventory_local"
+    dest: "{{workdir}}/inventory/inventory_local"
 
 - name: Create osp workstation tower inventory 
   template:
     src: inventory_workstation.j2
-    dest: "{{workdir}}/inventory_workstation"
+    dest: "{{workdir}}/inventory/inventory_workstation"
