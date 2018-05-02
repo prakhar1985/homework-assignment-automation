@@ -1,6 +1,0 @@
-
-[workstation]
-workstation-03f9.rhpds.opentlc.com
-
-[workstation:vars]
-ansible_ssh_common_args='-o StrictHostKeyChecking=no'

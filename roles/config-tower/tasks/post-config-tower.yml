@@ -16,7 +16,7 @@
     path: /root/workstation_creds.json
     state: absent
 
-- name: Create Inventory for SCM 
+- name: Create Inventory
   command: |
     tower-cli inventory create -n "{{static_inventory_name}}" --organization "{{org_name}}"
 
@@ -30,4 +30,4 @@
 
 - name: Associate workstation host to group 
   command: | 
-    tower-cli host associate --inventory "{{static_inventory_name}}" --host "{{host_name}}" --group "{{group_name}}"
+    tower-cli host associate --host "{{host_name}}" --group "{{group_name}}"

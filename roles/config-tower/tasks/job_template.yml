@@ -10,6 +10,16 @@
   command: |
     tower-cli job_template create --name "{{job_template_name_osp_instances}}" --job-type run --inventory "{{static_inventory_name}}" --project "{{proj_name}}" --playbook "{{osp_instances_playbook}}" --credential "{{ssh_cred_name}}"
 
-- name: Associate IG to OSP infra job templete 
+- name: Associate IG to OSP instances job templete 
   command: |
     tower-cli job_template associate_ig --job_template "{{job_template_name_osp_instances}}" --instance_group "{{instance_group_name}}"
+
+- name: Job template for OSP 3tier
+  command: |
+    tower-cli job_template create --name "{{job_template_name_3tier_app_osp}}" --job-type run --inventory "{{static_inventory_name}}" --project "{{proj_name}}" --playbook "{{app_deploy_playbook}}" --credential "{{ssh_cred_name}}"
+
+- name: Associate IG to OSP 3tier job templete  
+  command: |
+    tower-cli job_template associate_ig --job_template "{{job_template_name_3tier_app_osp}}" --instance_group "{{instance_group_name}}"
+
+
