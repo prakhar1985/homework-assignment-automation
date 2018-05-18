@@ -8,7 +8,7 @@
   become: yes
   roles:
     - setup-workstation
-    - osp-setup
+
 
 
 - hosts: bastion_tower

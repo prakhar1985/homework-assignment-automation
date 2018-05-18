@@ -23,3 +23,12 @@
     tower-cli job_template associate_ig --job_template "{{job_template_name_3tier_app_osp}}" --instance_group "{{instance_group_name}}"
 
 
+- name: Create vault credential
+  tower_credential:
+    name: "{{vault_name}}"
+    description: vault password to decrypt yum repo
+    organization: "{{org_name}}"
+    state: present
+    kind: vault
+    tower_config_file: "~/.tower_cli.cfg"
+    password: ansible

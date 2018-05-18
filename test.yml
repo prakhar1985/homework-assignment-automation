@@ -1,0 +1,5 @@
+- hosts: apps
+  gather_facts: false
+  tasks:
+  - name: Check the connectivity
+    ping:
