@@ -7,7 +7,7 @@ support1.{{tower_GUID}}.internal
 
 [isolated_group_osp]
 
-workstation-{{osp_GUID}}.rhpds.opentlc.com ansible_user='cloud-user' ansible_ssh_private_key_file='~/.ssh/openstack.pem' 
+workstation-{{osp_GUID}}.rhpds.opentlc.com ansible_user='cloud-user' ansible_ssh_private_key_file='~/.ssh/openstack.pem' ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 
 [isolated_group_osp:vars]
 controller=tower
