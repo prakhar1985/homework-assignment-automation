@@ -2,7 +2,7 @@
 # tasks file for check
 - name: OpenStack servers
   os_server_facts:
-    cloud: osp_cloud
+    cloud: ospcloud
     server: 'frontend'
   register: openstack_info
   tags:
