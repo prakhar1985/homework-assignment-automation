@@ -23,3 +23,5 @@ app_deploy_playbook: site-3tier-app.yml
 vault_name: yum_repo_vault
 job_template_name_osp_instances_delete: "Delete OSP Instances"
 osp_instances_delete_playbook: site-osp-delete.yml
+job_template_smoke_osp: "Smoke test QA Env"
+osp_smoke_playbook: site-smoke-osp.yml

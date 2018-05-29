@@ -35,3 +35,12 @@
 - name: Associate IG to OSP instances job templete 
   command: |
     tower-cli job_template associate_ig --job_template "{{job_template_name_osp_instances_delete}}" --instance_group "{{instance_group_name}}"
+
+
+- name: Job template for smoke test osp instances
+  command: |
+    tower-cli job_template create --name "{{job_template_smoke_osp}}" --job-type run --inventory "{{static_inventory_name}}" --project "{{proj_name}}" --playbook "{{osp_smoke_playbook}}" --credential "{{ssh_cred_name}}"
+
+- name: Associate IG to OSP instances job templete 
+  command: |
+    tower-cli job_template associate_ig --job_template "{{jjob_template_smoke_osp}}" --instance_group "{{instance_group_name}}"
