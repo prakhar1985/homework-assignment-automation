@@ -13,7 +13,7 @@
     url: "http://{{item.public_v4}}"
     return_content: yes
   with_items:
-    - "{{ openstack_info }}"
+    - "{{ openstack_info.ansible_facts.openstack_servers }}"
   register: webpage  
   tags:
     - osp.smoke
