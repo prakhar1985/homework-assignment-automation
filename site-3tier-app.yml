@@ -8,7 +8,8 @@
 - name: setup load-balancer tier
   hosts: frontends
   become: yes
-  gather_timeout: 300
+  #gather_timeout: 300
+  gather_facts: false
   environment:
     ANSIBLE_TIMEOUT: 300
   roles:
@@ -20,7 +21,7 @@
 - name: setup app tier
   hosts: apps
   become: yes
-  gather_timeout: 300
+  #gather_timeout: 300
   environment:
     ANSIBLE_TIMEOUT: 300
 #  become_method: sudo
@@ -34,7 +35,8 @@
 - name: setup database tier
   become: yes
   hosts: appdbs
-  gather_timeout: 300
+  gather_facts: false
+  #gather_timeout: 300
   environment:
     ANSIBLE_TIMEOUT: 300
 #  become_method: sudo
