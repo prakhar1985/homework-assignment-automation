@@ -1,7 +1,6 @@
 ---
 
 - name: install {{ payload }}
-  timeout: 300
   yum:
     name: "{{ payload }}"
     state: latest
