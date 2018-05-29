@@ -10,7 +10,7 @@
 
 - name: Curl website
   uri:
-    url: "http://{{item.accessIPv4}}"
+    url: "http://{{item.public_v4}}"
     return_content: yes
   with_items:
     - "{{ openstack_info }}"
