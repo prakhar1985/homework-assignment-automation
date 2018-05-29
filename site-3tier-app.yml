@@ -9,6 +9,7 @@
   hosts: frontends
   become: yes
   gather_timeout: 300
+  timeout: 300
   roles:
     - {name: base-config, tags: base-config}
     - {name: lb-tier, tags: [lbs, haproxy]}
@@ -19,6 +20,7 @@
   hosts: apps
   become: yes
   gather_timeout: 300
+  timeout: 300
 #  become_method: sudo
   gather_facts: false
   roles:
@@ -31,6 +33,7 @@
   become: yes
   hosts: appdbs
   gather_timeout: 300
+  timeout: 300
 #  become_method: sudo
   roles:
     - {name: base-config, tags: base-config}
