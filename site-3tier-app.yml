@@ -1,5 +1,7 @@
 - hosts: workstation
   gather_facts: true
+  environment:
+    ANSIBLE_TIMEOUT: 300
   roles:
   - name: osp-facts
 # Setup front-end load balancer tier
