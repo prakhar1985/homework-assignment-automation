@@ -4,6 +4,7 @@
   os_server_facts:
     cloud: osp_cloud
     server: 'frontend'
+  register: openstack_info
   tags:
     - osp.smoke
 
@@ -12,7 +13,7 @@
     url: "http://{{item.accessIPv4}}"
     return_content: yes
   with_items:
-    - "{{ openstack_servers}}"
+    - "{{ openstack_info }}"
   register: webpage  
   tags:
     - osp.smoke
@@ -21,7 +22,7 @@
   fail:
   when: item.status != 200
   with_items: 
-  - "{{ webpage.results}}"
+  - "{{ webpage.results }}"
   tags:
   - osp.smoke
 

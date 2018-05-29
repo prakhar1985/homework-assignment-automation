@@ -1,0 +1,5 @@
+- hosts: workstation
+  gather_facts: false
+  roles:
+    - {name: smoke.test, tags: osp.smoke}
+  
