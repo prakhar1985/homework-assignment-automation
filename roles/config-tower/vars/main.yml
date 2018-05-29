@@ -21,3 +21,5 @@ host_name: workstation-{{osp_GUID}}.rhpds.opentlc.com
 job_template_name_3tier_app_osp: 3tier-osp
 app_deploy_playbook: site-3tier-app.yml
 vault_name: yum_repo_vault
+job_template_name_osp_instances_delete: "Delete OSP Instances"
+osp_instances_delete_playbook: site-osp-delete.yml

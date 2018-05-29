@@ -28,3 +28,10 @@
     tower-cli job_template associate_ig --job_template "{{job_template_name_3tier_app_osp}}" --instance_group "{{instance_group_name}}"
 
 
+- name: Job template to delete OSP Instances
+  command: |
+    tower-cli job_template create --name "{{job_template_name_osp_instances_delete}}" --job-type run --inventory "{{static_inventory_name}}" --project "{{proj_name}}" --playbook "{{osp_instances_delete_playbook}}" --credential "{{ssh_cred_name}}"
+
+- name: Associate IG to OSP instances job templete 
+  command: |
+    tower-cli job_template associate_ig --job_template "{{job_template_name_osp_instances_delete}}" --instance_group "{{instance_group_name}}"

@@ -8,6 +8,7 @@
 - name: setup load-balancer tier
   hosts: frontends
   become: yes
+  become_method: sudo
   roles:
     - {name: base-config, tags: base-config}
     - {name: lb-tier, tags: [lbs, haproxy]}
@@ -17,6 +18,7 @@
 - name: setup app tier
   hosts: apps
   become: yes
+  become_method: sudo
   gather_facts: false
   roles:
     - {name: base-config, tags: base-config}
@@ -27,6 +29,7 @@
 - name: setup database tier
   become: yes
   hosts: appdbs
+  become_method: sudo
   roles:
     - {name: base-config, tags: base-config}
     - {name: geerlingguy.postgresql, tags: [dbs, postgres]}
