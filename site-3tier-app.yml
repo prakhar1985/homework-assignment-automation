@@ -1,19 +1,14 @@
 - hosts: workstation
   gather_facts: true
-  environment:
-    ANSIBLE_TIMEOUT: 300
   roles:
   - name: osp-facts
+
 # Setup front-end load balancer tier
 
 
 - name: setup load-balancer tier
   hosts: frontends
   become: yes
-  #gather_timeout: 300
-  gather_facts: false
-  environment:
-    ANSIBLE_TIMEOUT: 300
   roles:
     - {name: base-config, tags: base-config}
     - {name: lb-tier, tags: [lbs, haproxy]}
@@ -23,10 +18,6 @@
 - name: setup app tier
   hosts: apps
   become: yes
-  #gather_timeout: 300
-  environment:
-    ANSIBLE_TIMEOUT: 300
-#  become_method: sudo
   gather_facts: false
   roles:
     - {name: base-config, tags: base-config}
@@ -37,11 +28,6 @@
 - name: setup database tier
   become: yes
   hosts: appdbs
-  gather_facts: false
-  #gather_timeout: 300
-  environment:
-    ANSIBLE_TIMEOUT: 300
-#  become_method: sudo
   roles:
     - {name: base-config, tags: base-config}
     - {name: geerlingguy.postgresql, tags: [dbs, postgres]}
