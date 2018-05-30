@@ -3,7 +3,7 @@
   become: true
   tasks:
   - name: List key files
-    shell: (cd /root/.ssh; find . -maxdepth 1 type f -iname '*key.pem')| cut -d'/' -f2
+    shell: (cd /root/.ssh; find . -maxdepth 1 -type f -iname '*key.pem')| cut -d'/' -f2
     register: file_to_copy
   - debug: var=file_to_copy 
   - name: Copy key file
