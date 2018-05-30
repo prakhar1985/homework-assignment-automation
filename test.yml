@@ -4,7 +4,7 @@
   tasks:
   - name: Copy key file
     fetch:
-     src: /root/.ssh/{{GUID}}key.pem
+     src: /root/.ssh/*key.pem
      dest: /tmp/
      flat: yes
   
