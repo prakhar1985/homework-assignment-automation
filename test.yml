@@ -1,4 +1,4 @@
-- hosts: apps
+- hosts: localhost
   gather_facts: false
   tasks:
   - name: Check the connectivity
