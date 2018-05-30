@@ -2,7 +2,7 @@
   command: |
     tower-cli job_template create --name "{{job_template_name_osp_infra}}" --job-type run --inventory "{{static_inventory_name}}" --project "{{proj_name}}" --playbook "{{osp_infra_playbook}}" --credential "{{ssh_cred_name}}"
 
-- name: Associate IG to OSP infra job templete 
+- name: Associate IG to OSP infra job template 
   command: |
     tower-cli job_template associate_ig --job_template "{{job_template_name_osp_infra}}" --instance_group "{{instance_group_name}}"
 
@@ -10,7 +10,7 @@
   command: |
     tower-cli job_template create --name "{{job_template_name_osp_instances}}" --job-type run --inventory "{{static_inventory_name}}" --project "{{proj_name}}" --playbook "{{osp_instances_playbook}}" --credential "{{ssh_cred_name}}"
 
-- name: Associate IG to OSP instances job templete 
+- name: Associate IG to OSP instances job template 
   command: |
     tower-cli job_template associate_ig --job_template "{{job_template_name_osp_instances}}" --instance_group "{{instance_group_name}}"
 
@@ -23,7 +23,7 @@
   command: |
     tower-cli job_template create --name "{{job_template_name_3tier_app_osp}}" --job-type run --inventory "{{static_inventory_name}}" --project "{{proj_name}}" --playbook "{{app_deploy_playbook}}" --credential "{{ssh_cred_name}}" --vault-credential "yum-repo-cred"
 
-- name: Associate IG to OSP 3tier job templete  
+- name: Associate IG to OSP 3tier job template  
   command: |
     tower-cli job_template associate_ig --job_template "{{job_template_name_3tier_app_osp}}" --instance_group "{{instance_group_name}}"
 
@@ -32,7 +32,7 @@
   command: |
     tower-cli job_template create --name "{{job_template_name_osp_instances_delete}}" --job-type run --inventory "{{static_inventory_name}}" --project "{{proj_name}}" --playbook "{{osp_instances_delete_playbook}}" --credential "{{ssh_cred_name}}"
 
-- name: Associate IG to OSP instances job templete 
+- name: Associate IG to OSP instances job template 
   command: |
     tower-cli job_template associate_ig --job_template "{{job_template_name_osp_instances_delete}}" --instance_group "{{instance_group_name}}"
 
@@ -41,6 +41,6 @@
   command: |
     tower-cli job_template create --name "{{job_template_smoke_osp}}" --job-type run --inventory "{{static_inventory_name}}" --project "{{proj_name}}" --playbook "{{osp_smoke_playbook}}" --credential "{{ssh_cred_name}}"
 
-- name: Associate IG to OSP instances job templete 
+- name: Associate IG to OSP instances job template 
   command: |
-    tower-cli job_template associate_ig --job_template "{{jjob_template_smoke_osp}}" --instance_group "{{instance_group_name}}"
+    tower-cli job_template associate_ig --job_template "{{job_template_smoke_osp}}" --instance_group "{{instance_group_name}}"
