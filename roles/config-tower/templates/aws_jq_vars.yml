@@ -1,2 +1,3 @@
-paran_user: {{sso_user}}
+param_user: {{sso_login}}
 param_password: {{sso_password}}
+param_repo_base: {{param_repo_base}}
