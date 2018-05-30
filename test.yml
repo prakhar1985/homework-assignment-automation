@@ -8,7 +8,7 @@
   - debug: var=file_to_copy 
   - name: Copy key file
     fetch:
-     src: /root/.ssh/*key.pem
+     src: "/root/.ssh/{{item}}"
      dest: /tmp/
      flat: yes
-  
+    loop: "{{ file_to_copy.stdout }}" 
