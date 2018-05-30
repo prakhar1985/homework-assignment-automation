@@ -25,3 +25,5 @@ job_template_name_osp_instances_delete: "Delete OSP Instances"
 osp_instances_delete_playbook: site-osp-delete.yml
 job_template_smoke_osp: "Smoke test QA Env"
 osp_smoke_playbook: site-smoke-osp.yml
+job_template_aws_provision: "Provision Prod Env"
+aws_provision_playbook: aws_provision.yml

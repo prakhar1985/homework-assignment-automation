@@ -44,3 +44,8 @@
 - name: Associate IG to OSP instances job template 
   command: |
     tower-cli job_template associate_ig --job_template "{{job_template_smoke_osp}}" --instance_group "{{instance_group_name}}"
+
+- name: Job template for Provisioning AWS env
+  command: |
+    tower-cli job_template create --name "{{job_template_aws_provision}}" --job-type run --inventory "{{static_inventory_name}}" --project "{{proj_name}}" --playbook "{{aws_provision_playbook}}" --credential "{{ssh_cred_name}}" --extra-vars @/tmp/aws_jq_vars.yml
+    

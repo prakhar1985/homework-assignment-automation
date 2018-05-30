@@ -1,0 +1,2 @@
+paran_user: {{sso_user}}
+param_password: {{sso_password}}

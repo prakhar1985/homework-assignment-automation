@@ -36,6 +36,8 @@ export OSP_GUID=<OSP GUID from mail>
 export SSO_LOGIN=<username-company.com>
 export SSO_KEY=~/.ssh/key.pem
 export WORKDIR=/Users/<username>/homework-assignment-automation/
+export SSO_PASSWORD=<your openlc account password>
+exxport JQ_REPO_BASE=http://www.opentlc.com/download/ansible_bootcamp
 
 ###### Create local inventory
 
@@ -55,5 +57,5 @@ ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 
 EOF
 
-# ansible-playbook  site-homework.yml -e tower_GUID=${TOWER_GUID} -e osp_GUID=${OSP_GUID} -e sso_login=${SSO_LOGIN} -e path_to_sso_key=${SSO_KEY} -e workdir=${WORKDIR} --ask-vault-pass
+# ansible-playbook  site-homework.yml -e tower_GUID=${TOWER_GUID} -e osp_GUID=${OSP_GUID} -e sso_login=${SSO_LOGIN} -e path_to_sso_key=${SSO_KEY} -e workdir=${WORKDIR} -e param_repo_base=${JQ_REPO_BASE} -e sso_password=${SSO_PASSWORD} --ask-vault-pass
 ---- 
