@@ -53,6 +53,6 @@
     dest: /root/secret.pem
 
 - name: Copy AWS read only creds
-  file:
+  copy:
     src: read_only.json 
     dest: /root/read_only.json
