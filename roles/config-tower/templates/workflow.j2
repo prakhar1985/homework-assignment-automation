@@ -1,13 +1,15 @@
 - project: "{{proj_name}}"
   success:
   - job_template: "{{job_template_name_osp_infra}}"
-  success:
-  - job_template: "{{job_template_aws_provision}}"
     success:
     - job_template: "{{job_template_name_osp_instances}}"
-     success:
-     - job_template: "{{job_template_name_3tier_app_osp}}"
-       success:
-       - job_template: "{{job_template_smoke_osp}}"
-         failure:
-         - job_template: "{{job_template_name_osp_instances_delete}}"
+      success:
+      - job_template: "{{job_template_name_3tier_app_osp}}"
+        success:
+        - job_template: "{{job_template_smoke_osp}}"
+          failure:
+          - job_template: "{{job_template_name_osp_instances_delete}}"
+          success:
+          - job_template: "{{job_template_aws_provision}}"
+            success:
+            - 

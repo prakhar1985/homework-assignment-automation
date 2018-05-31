@@ -45,3 +45,6 @@
       shell: source /root/credential.rc; /root/order_svc.sh -y -c 'OPENTLC Automation' -i 'Three Tier Application' -t 1
       args:
         chdir: /root
+    - name: Wait for mail
+      pause:
+        minutes: 10 
