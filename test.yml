@@ -5,10 +5,14 @@
   - name: List key files
     shell: (cd /root/.ssh; find . -maxdepth 1 -type f -iname '*key.pem')| cut -d'/' -f2
     register: file_to_copy
-  - debug: var=file_to_copy 
-  - name: Copy key file
-    fetch:
-     src: "/root/.ssh/{{item}}"
-     dest: "/tmp/{{ item }}"
-     flat: yes
-    with_items: "{{ file_to_copy.stdout }}" 
+  - name: Tower Creds key file
+    tower_credential:
+      name: Creds for AWS instances
+      organization: Default
+      state: present
+      kind: ssh
+      tower_host: tower1.0401.example.opentlc.com
+      tower_username: admin
+      tower_password: r3dh4t1!
+      ssh_key_data: "{{ item }}"
+  with_items: "{{ file_to_copy.stdout }}" 
