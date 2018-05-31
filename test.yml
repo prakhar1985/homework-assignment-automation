@@ -14,5 +14,5 @@
       tower_host: tower1.0401.example.opentlc.com
       tower_username: admin
       tower_password: r3dh4t1!
-      ssh_key_data: "{{ file_to_copy.stdout }}"
+      ssh_key_data: "/root/.ssh/{{ file_to_copy.stdout }}"
     
