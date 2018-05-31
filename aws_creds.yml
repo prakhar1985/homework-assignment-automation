@@ -2,6 +2,19 @@
   gather_facts: true
   become: true
   tasks:
+  - name: Install required packages 
+    yum: 
+     name: "{{item}}"
+     state: latest 
+    loop: 
+      - python 
+      - python-pip 
+      - python-devel 
+      - gcc
+  - name: Install tower-cli
+    pip:
+     name: ansible-tower-cli
+     state: latest
   - name: List key files
     shell: (cd /root/.ssh; find . -maxdepth 1 -type f -iname '*key.pem')| cut -d'/' -f2
     register: file_to_copy
@@ -11,7 +24,7 @@
       organization: Default
       state: present
       kind: ssh
-      tower_host: tower1.0401.example.opentlc.com
+      tower_host: tower1.{{tower_guid}}.example.opentlc.com
       tower_username: admin
       tower_password: r3dh4t1!
       ssh_key_data: "/root/.ssh/{{ file_to_copy.stdout }}"

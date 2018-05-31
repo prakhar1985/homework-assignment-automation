@@ -1,0 +1,3 @@
+- name: Create Inventory
+  command: |
+    tower-cli inventory create -n "{{ec2_dynamic_inventory}}" --organization "{{org_name}}"

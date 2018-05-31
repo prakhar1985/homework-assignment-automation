@@ -41,3 +41,13 @@
   template:
     src: aws_jq_vars.yml
     dest: /tmp/aws_jq_vars.yml
+
+- name: Generate var file for tower module
+  template:
+    src: tower_info.yml
+    dest: /tmp/tower_info.yml
+
+- name: Copy sso ssh keys
+  copy:
+    src: "{{path_to_sso_key}}"
+    dest: /root/secret.pem

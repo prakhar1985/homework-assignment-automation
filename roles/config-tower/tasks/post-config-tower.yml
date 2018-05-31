@@ -31,3 +31,22 @@
 - name: Associate workstation host to group 
   command: | 
     tower-cli host associate --host "{{host_name}}" --group "{{group_name}}"
+
+
+- name: Tower Creds key file
+  tower_credential:
+    name: "{{ sso_cred_name }}"
+    organization: Default
+    state: present
+    kind: ssh
+    tower_host: tower1.{{tower_guid}}.example.opentlc.com
+    tower_username: admin
+    tower_password: r3dh4t1!
+    ssh_key_data: /root/secret.pem
+    username: "{{ sso_login }}"
+
+- name: Remove secret
+  file:
+    name: /root/secret.pem
+    state: absent
+    

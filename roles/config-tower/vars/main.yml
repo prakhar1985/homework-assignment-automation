@@ -27,3 +27,6 @@ job_template_smoke_osp: "Smoke test QA Env"
 osp_smoke_playbook: site-smoke-osp.yml
 job_template_aws_provision: "Provision Prod Env"
 aws_provision_playbook: aws_provision.yml
+ec2_dynamic_inventory: "Three tier inventory"
+aws_ssh_playbook: aws_creds.yml
+sso_cred_name: "SSO key"
