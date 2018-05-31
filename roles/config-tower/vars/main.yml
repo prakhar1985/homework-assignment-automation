@@ -30,3 +30,4 @@ aws_provision_playbook: aws_provision.yml
 ec2_dynamic_inventory: "Three tier inventory"
 aws_ssh_playbook: aws_creds.yml
 sso_cred_name: "SSO key"
+job_template_aws_ssh_keys: "SSH keys three tier app"

@@ -39,7 +39,7 @@
     organization: Default
     state: present
     kind: ssh
-    tower_host: tower1.{{tower_guid}}.example.opentlc.com
+    tower_host: tower1.{{tower_GUID}}.example.opentlc.com
     tower_username: admin
     tower_password: r3dh4t1!
     ssh_key_data: /root/secret.pem
