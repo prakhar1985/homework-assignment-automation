@@ -1,6 +1,8 @@
 - project: "{{proj_name}}"
   success:
   - job_template: "{{job_template_name_osp_infra}}"
+  success:
+  - job_template: "{{job_template_aws_provision}}"
     success:
     - job_template: "{{job_template_name_osp_instances}}"
       success:
