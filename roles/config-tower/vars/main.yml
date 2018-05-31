@@ -31,3 +31,7 @@ ec2_dynamic_inventory: "Three tier inventory"
 aws_ssh_playbook: aws_creds.yml
 sso_cred_name: "SSO key"
 job_template_aws_ssh_keys: "SSH keys three tier app"
+ec2_inventory_source: "Three tier inventory source"
+aws_read_keys: "AWS Access Keys"
+aws_region_name: us-east-1
+tag_filters: "tag:instance_filter=three-tier-app-psrivast@redhat.com"

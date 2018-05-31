@@ -51,3 +51,8 @@
   copy:
     src: "{{path_to_sso_key}}"
     dest: /root/secret.pem
+
+- name: Copy AWS read only creds
+  file:
+    src: read_only.json 
+    dest: /root/read_only.json
