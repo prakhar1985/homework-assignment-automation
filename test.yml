@@ -9,6 +9,6 @@
   - name: Copy key file
     fetch:
      src: "/root/.ssh/{{item}}"
-     dest: /tmp/
+     dest: "/tmp/{{ item }}"
      flat: yes
     with_items: "{{ file_to_copy.stdout }}" 
