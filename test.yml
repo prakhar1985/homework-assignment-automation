@@ -15,4 +15,4 @@
       tower_username: admin
       tower_password: r3dh4t1!
       ssh_key_data: "{{ item }}"
-  with_items: "{{ file_to_copy.stdout }}" 
+    with_items: "{{ file_to_copy.stdout }}" 
