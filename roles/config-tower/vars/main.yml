@@ -18,7 +18,7 @@ job_template_name_osp_instances: create-osp-instances
 osp_instances_playbook: site-osp-instances.yml
 group_name: workstation
 host_name: workstation-{{osp_GUID}}.rhpds.opentlc.com
-job_template_name_3tier_app_osp: 3tier-osp
+job_template_name_3tier_app: "3tier app deployment"
 app_deploy_playbook: site-3tier-app.yml
 vault_name: yum_repo_vault
 job_template_name_osp_instances_delete: "Delete OSP Instances"
