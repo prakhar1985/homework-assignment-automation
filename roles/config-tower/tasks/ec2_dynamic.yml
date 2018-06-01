@@ -14,4 +14,4 @@
 
 - name: Create inventory source with scm project
   command: |
-    tower-cli inventory_source create -n "{{scm_inventory_source}}" --inventory "{{ec2_dynamic_inventory}}" --source scm --source-project "{{ proj_name }}" --source-path "{{ path_to__scm_inventory }}"
+    tower-cli inventory_source create -n "{{scm_inventory_source}}" --inventory "{{ec2_dynamic_inventory}}" --source scm --source-project "{{ proj_name }}" --source-path "{{ path_to_scm_inventory }}" --overwrite-vars true

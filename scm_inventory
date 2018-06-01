@@ -1,13 +1,13 @@
-[bastions]
+[bastions:children]
 tag_AnsibleGroup_bastions
 
-[apps]
+[apps:children]
 tag_AnsibleGroup_apps
 
 
-[appdbs]
+[appdbs:children]
 tag_AnsibleGroup_appdbs
 
-[frontends]
+[frontends:children]
 tag_AnsibleGroup_frontends
 
