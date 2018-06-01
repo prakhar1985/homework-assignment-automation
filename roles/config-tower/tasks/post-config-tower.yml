@@ -57,3 +57,4 @@
   file:
     name: /root/read_only.json
     state: absent
+

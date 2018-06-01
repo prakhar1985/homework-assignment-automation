@@ -21,7 +21,7 @@
   - name: Tower Creds key file
     tower_credential:
       name: Creds for AWS instances
-      organization: Default
+ #     organization: Default
       state: present
       kind: ssh
       tower_host: tower1.{{tower_guid}}.example.opentlc.com
