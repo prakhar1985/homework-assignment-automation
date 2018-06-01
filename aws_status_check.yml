@@ -1,4 +1,4 @@
-- hosts: tag:instance_filter=three-tier-app-psrivast@redhat.com
+- hosts: three-tier-app-psrivast@redhat.com
   gather_facts: false
   tasks:
   - name: Check the instances status
