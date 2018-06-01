@@ -13,5 +13,8 @@
           - job_template: "{{job_template_aws_provision}}"
             success:
             - inventory_source: "{{ec2_inventory_source}}"
-              
+              success:
+              - job_template: "{{job_template_aws_status_check}}"
+                success:
+                - job_template: "{{job_template_name_3tier_app_osp}}"
              

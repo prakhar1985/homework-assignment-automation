@@ -52,4 +52,7 @@
 - name: Job template for injecting AWS SSH keys
   command: |
     tower-cli job_template create --name "{{job_template_aws_ssh_keys}}" --job-type run --inventory "{{ec2_dynamic_inventory}}" --project "{{proj_name}}" --playbook "{{aws_ssh_playbook}}" --credential "{{sso_cred_name}}" --extra-vars @/tmp/tower_info.yml
-    
+
+- name: Job template for checking AWS instances status
+  command: |
+    tower-cli job_template create --name "{{job_template_aws_status_check}}" --job-type run --inventory "{{ec2_dynamic_inventory}}" --project "{{proj_name}}" --playbook "{{aws_status_palybook}}" --credential "{{sso_cred_name}}"
