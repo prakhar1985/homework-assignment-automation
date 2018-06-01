@@ -11,6 +11,10 @@
     - appdbs
     - frontends
     - bastions
+    - tag_AnsibleGroup_bastions
+    - tag_AnsibleGroup_frontends
+    - tag_AnsibleGroup_apps
+    - tag_AnsibleGroup_appdbs
 
 - name: Associate AWS tags as children to bastions group
   command: |
