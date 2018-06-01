@@ -56,3 +56,8 @@
   copy:
     src: read_only.json 
     dest: /root/read_only.json
+
+- name: Copy inventory vars
+  copy:
+    src: inventory_vars.json
+    dest: /root/inventory_vars.json

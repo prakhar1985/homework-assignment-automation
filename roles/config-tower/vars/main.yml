@@ -35,3 +35,4 @@ ec2_inventory_source: "Three tier inventory source"
 aws_read_keys: "AWS Access Keys"
 aws_region_name: us-east-1
 tag_filters: "tag:instance_filter=three-tier-app-psrivast@redhat.com"
+path_to_scm_inventory: scm_inventory

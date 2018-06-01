@@ -50,8 +50,6 @@
     name: /root/secret.pem
     state: absent
 
-
-
 - name: Create AWS ready only Credentials
   shell: tower-cli credential create --credential-type 'Amazon Web Services' -u admin -p r3dh4t1! -h https://tower1.{{tower_GUID}}.example.opentlc.com --name "{{aws_read_keys}}"  --organization "{{org_name}}" --inputs @/root/read_only.json
     

@@ -1,0 +1,13 @@
+[bastions]
+tag_AnsibleGroup_bastions
+
+[apps]
+tag_AnsibleGroup_apps
+
+
+[appdbs]
+tag_AnsibleGroup_appdbs
+
+[frontends]
+tag_AnsibleGroup_frontends
+

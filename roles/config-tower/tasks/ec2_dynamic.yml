@@ -1,3 +1,17 @@
 - name: Create Inventory
   command: |
     tower-cli inventory create -n "{{ec2_dynamic_inventory}}" --organization "{{org_name}}"
+
+
+- name: Add localhost as host 
+  command: |
+    tower-cli host create -n localhost --inventory "{{ec2_dynamic_inventory}}" --variables @/root/inventory_vars.json
+
+- name: Create inventory source with ec2 script
+  command: |
+    tower-cli inventory_source create -n "{{ec2_inventory_source}}" --inventory "{{ec2_dynamic_inventory}}" --source ec2 --credential "{{aws_read_keys}}" --source-regions "{{aws_region_name}}" --instance-filters "{{tag_filters}}"
+
+
+- name: Create inventory source with scm project
+  command: |
+    tower-cli inventory_source create -n "{{scm_inventory_source}}" --inventory "{{ec2_dynamic_inventory}}" --source scm --source-project "{{ proj_name }}" --source-path "{{ path_to__scm_inventory }}"
