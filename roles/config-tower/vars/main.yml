@@ -39,3 +39,6 @@ scm_inventory_source: "SCM three tier inventory source"
 path_to_scm_inventory: scm_inventory
 aws_status_playbook: aws_status_check.yml
 job_template_aws_status_check: "Check the status of AWS instances"
+job_template_smoke_aws: "Smoke test Prod env"
+aws_smoke_app_playbook: site-smoketest-aws.yml
+
