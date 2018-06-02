@@ -7,7 +7,7 @@
       - job_template: "{{job_template_aws_status_check}}"
         success:
         - job_template: "{{job_template_aws_ssh_keys}}"
-  - job_template: "{{osp_infra_playbook}}"
+  - job_template: "{{job_template_name_osp_infra}}"
     success:
     - job_template: "{{job_template_name_osp_instances}}"
       success:

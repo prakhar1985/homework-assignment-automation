@@ -64,7 +64,3 @@
 - name: Job template for smoke test aws instances
   command: |
     tower-cli job_template create --name "{{job_template_smoke_aws}}" --job-type run --inventory "{{ec2_dynamic_inventory}}" --project "{{proj_name}}" --playbook "{{aws_smoke_app_playbook}}" --vault-credential "yum-repo-cred"
-
-- name: Launch Workflow
-  command: |
-    tower-cli workflow_job launch --workflow-job-template "{{workflow_template_name}}"
