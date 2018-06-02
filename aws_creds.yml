@@ -37,6 +37,9 @@
       tower_username: admin
       tower_password: r3dh4t1!
       state: present
+      job_type: run
+      playbook: site-3tier-app.yml
+      project: "Homework Assignment"
   - name: Update Prod Smoke Job template
     tower_job_template:
       name: "Smoke test Prod env"
@@ -45,5 +48,8 @@
       tower_username: admin
       tower_password: r3dh4t1!
       state: present
+      job_type: run
+      playbook: site-smoketest-aws.yml
+      project: "Homework Assignment"
 
     
