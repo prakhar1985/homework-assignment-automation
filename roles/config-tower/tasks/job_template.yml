@@ -57,6 +57,10 @@
   command: |
     tower-cli job_template create --name "{{job_template_aws_status_check}}" --job-type run --inventory "{{ec2_dynamic_inventory}}" --project "{{proj_name}}" --playbook "{{aws_status_playbook}}" --credential "{{sso_cred_name}}"
 
+- name: Job template for 3tier AWS deploy
+  command: |
+    tower-cli job_template create --name "{{job_template_name_3tier_app_aws}}" --job-type run --inventory "{{ec2_dynamic_inventory}}" --project "{{proj_name}}" --playbook "{{app_deploy_playbook}}" --credential "{{aws_cred_name}}" --vault-credential "yum-repo-cred"
+
 - name: Job template for smoke test aws instances
   command: |
     tower-cli job_template create --name "{{job_template_smoke_aws}}" --job-type run --inventory "{{ec2_dynamic_inventory}}" --project "{{proj_name}}" --playbook "{{aws_smoke_app_playbook}}" --credential "{{sso_cred_name}}"
