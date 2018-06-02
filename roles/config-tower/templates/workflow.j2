@@ -16,8 +16,8 @@
         - job_template: "{{job_template_smoke_osp}}"
           failure:
           - job_template: "{{job_template_name_osp_instances_delete}}"
+          success:
+          - job_template: "{{job_template_name_3tier_app_aws}}"
             success:
-            - job_template: "{{job_template_name_3tier_app_aws}}"
-              success:
-              - job_template: "{{job_template_smoke_aws}}"
+            - job_template: "{{job_template_smoke_aws}}"
              
