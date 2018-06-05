@@ -19,7 +19,7 @@
   command: |
     tower-cli credential create --name="yum-repo-cred" --organization "{{org_name}}" --inputs='{"vault_password":"ansible"}'  --credential-type="Vault"
 
-- name: Job template for 3tier app deploy
+- name: Job template for 3tier app deploy on QA Env
   command: |
     tower-cli job_template create --name "{{job_template_name_3tier_app}}" --job-type run --inventory "{{static_inventory_name}}" --project "{{proj_name}}" --playbook "{{app_deploy_playbook}}" --credential "{{ssh_cred_name}}" --vault-credential "yum-repo-cred"
 
