@@ -1,0 +1,295 @@
+:scrollbar:
+:data-uri:
+:linkattrs:
+:imagesdir: images
+:toc2:
+:opencf: link:https://labs.opentlc.com/[OPENTLC lab portal^]
+:course_name: Advanced Deployment with Red Hat Ansible Automation
+:account_management: link:https://www.opentlc.com/account/[OPENTLC Account Management^]
+:catalog_name: OPENTLC Automation
+:catalog_item_name1: Homework Assignment
+:catalog_item_name2: Homework Assignment
+:need_client: false
+:show_solution: false
+
+
+
+== Homework Assignment
+
+.Goals
+* Assess hands-on proficiency with Red Hat Ansible Tower advanced topics
+* Complete this course, leading to *Red Hat Delivery Specialist – Ansible Advanced*
+
+.Criteria
+* Assignments take the average student 30-40 hours to complete
+* Assignments are an individual effort
+** You must complete your own assignment without collaboration
+
+* Assignments simulate a challenge typically encountered in a Red Hat Consulting engagement
+
+** Assignment requirements are intentionally vague
+
+* Grading is as follows:
+** *30%*: Basic Requirements sections
+** *20%*: Provision QA Environment (including smoke test)
+** *25%*: Provision Production Environment (including smoke test)
+** *25%*: Design Ansible Tower Workflow Job Template
+** Provide sufficient documentation for each section
+*** Sections without documentation will not be graded
+
+:numbered:
+
+== Business Use Case
+
+You are a consultant assigned to a telecommunications company called MitziCom. MitziCom provides hosting and cloud services to a variety of clients, from medium-sized companies to enterprise giants.
+
+MitziCom has asked you to lead a 30- to 40-hour proof-of-concept (POC) using Red Hat Ansible Tower. The purpose of the POC is to determine the feasibility of using Ansible Tower as a CI/CD tool for automating continuous deployment of an internal three-tier application on QA and production environments. Note that this requires maintaining several instances of the application.
+
+
+== POC Requirements
+
+MitziCom management requires that you include all of the items listed in these subsections in your POC.
+
+
+=== Basic Requirements
+
+* GitHub repository
+* Playbooks to deploy internal three-tier application
+* Install Ansible Tower Isolated Node
+
+
+=== Provision QA Environment
+* Develop Ansible Playbook to install Ansible Tower Isolated Node
+* Develop Ansible Playbooks to provision instances on OpenStack to support the three-tier application
+* Playbooks need to be accessible through a GitHub repository
+* Set up Ansible Tower to use Tower Isolated node to reach instances running on OpenStack
+* Develop a task to run a smoke test on the QA environment for the three-tier application from Ansible Tower
+* Develop a playbook to destroy the QA environment on OpenStack if the smoke test fails
+
+
+== Setup and Playbooks Provided as support
+
+* Ansible Tower will be installed for you.
+* Playbooks for provisioning OSP network components will be provided.
+
+
+.Suggested Playbooks
+* `Provision_OSP.yml`
+* `Configure_3TA_OSP.yml` (include smoke test task)
+* `cleanup_OSP.yml` (runs if other tasks fail, destroys OpenStack instances)
+
+=== Provision Production Environment
+
+* Develop Ansible Playbooks to provision infrastructure on AWS instances using `Order_SVC.sh` script (see below)
+* Playbooks need to be accessible through a GitHub repository
+* Develop playbooks to run a smoke test on the production environment for the three-tier application using a public URL
+
+.Suggested Playbooks
+* `Provision_AWS.yml`
+* `Configure_3TA_AWS.yml` (include smoke test task)
+* `cleanup_AWS.yml` (runs if other tasks fail, destroys OpenStack instances)
+
+=== Design Ansible Tower Workflow Job Template
+
+* Define a workflow to automate the process of provisioning the QA and production environments
+** Workflow needs to include the deployment and testing of the three-tier application
+
+.Outline
+. Deploy instances on OpenStack QA environment
+. Configure instances on OpenStack QA environment (smoke test)
+.. Clean up if failed
+. Deploy instances on AWS using `Order_SVC.sh` script
+. Configure instances on AWS production environment (smoke test)
+.. Clean up if failed
+
+=== Lab Environment
+
+The lab details a recommended process for meeting MitziCom's requirements, as defined in the lab's goals. Information about the infrastructure, DNS names, passwords, and more is provided throughout the lab.
+
+NOTE: Use the same environments as you did in class.
+
+==== Provisioned Environment Hosts
+
+The lab environment consists of two life-cycle environments.
+
+.QA Environment
+
+The development environment, running Red Hat OpenStack Platform 10, is hidden behind the firewall. You need to provision instances on OpenStack for developers to test their three-tier application.
+
+* Ansible Tower Isolated Node: `workstation-${GUID}.rhpds.opentlc.com` (This GUID is different than
+the GUID used for your Ansible Tower environment.)
+* OpenStack controller host: `ctrl.example.com`
+
+.Production Environment
+
+* Administration server: `bastion.{GUID}.example.opentlc.com`, `bastion.${GUID}.internal`
+* HAProxy server: `frontend1.{GUID}.example.opentlc.com`, `frontend1.${GUID}.internal`
+* Tomcat servers: `app{1,2}.${GUID}.internal`
+* Database server: `appdb1.${GUID}.internal`
+
+
+.Management Servers
+
+* Administration server: `bastion.{GUID}.example.opentlc.com`, `bastion.${GUID}.internal`
+* Ansible Tower nodes: `tower{1,2,3}.${GUID}.example.opentlc.com`, `tower{1,2,3}.${GUID}.internal`
+* Ansible Tower database servers: `support{1,2}.${GUID}.internal`
+
+
+== Provision QA Environment
+
+In this section, you will use the playbooks and roles to setup the QA environment. 
+
+. Roles to provision OpenStack Platform-hosted infrastructure using the network details provided below:
+. Clone the GitHub repo to get the roles and playbooks for setting up network components, flavors and images in OSP Env. 
+[source,text]
+----
+# git clone https://github.com/prakhar1985/homework-assignment-automation
+----
+
+. Use Playbook `setup-osp-infra.yml` which will setup the below given components.
+. Playbook will do the follwoing:
+.. Create Public and Private network
+.. Create Flavor for OSP Instances
+.. Create Glance Image for OSP Instances
+.. Create SSH Keypair with the name `ansible_ssh`.
+.. Create security groups that allows traffic on the ports required to access the application from the isoloated node.
+
+
+.Public Network
+[options="header",caption=""]
+|======================================
+|Purpose    |Subnet
+|CIDR       |10.10.10.0/24
+|Routes     |0.0.0.0/0, 192.168.0.0/24
+|Nameservers|8.8.8.7, 8.8.8.8
+|======================================
+
+
+.Private Network
+[options="header",caption=""]
+|=========================
+|Purpose|Subnet
+|CIDR   |20.20.20.0/24
+|=========================
+
+[NOTE]
+The private network is a non-routable network.
+
+
+.Custom flavor per the developer requirements for defining the hardware profile of instances:
+
+[cols="2"]
+|========================
+|Name    | m2.small
+|RAM     | 2048
+|VCPUS   | 1
+|Disk    | 5 (Do not get this wrong)
+|========================
+
+
+
+== Provision OSP Instances
+
+
+
+. Create a role to create instances.
+
+. Implement requirements defined by the developers to test the application.
+
+* Per the organization's security policy, you inject two separate public keys
+** Use `openstack.pub` and `openstack.pem` keys to connect to the jumpbox (workstation) and OpenStack Platform-hosted instances
+
+* Add public keys for managing instances from Ansible Tower
+** link:http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pub["http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pub^"]
+** link:http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pem["http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pem^"]
+
+* Configure your instance to use the organization's local yum repository
+** link:http://www.opentlc.com/download/ansible_bootcamp/repo/internal.repo["http://www.opentlc.com/download/ansible_bootcamp/repo/internal.repo^"]
+
+. Push all of the roles to GitHub to use them in the Ansible workflow job template.
++
+WARNING: Do not push the .pem file or the repository host name into your Git repository.
+
+=== Deploy Three-Tier Application on QA Environment
+
+In this section you test the previously created roles and playbooks to deploy the three-tier application on the QA environment from Ansible Tower.
+
+. Test your roles and playbooks present on GitHub to deploy the three-tier application on instances launched on OpenStack.
+
+. Use `curl` or `wget` to test your deployed application from the jumpbox.
+
+
+== Provision Production Environment
+
+In this section, you write a playbook that uses the script to provision the production
+environment on AWS.
+
+* Prerequisite for the script that provisions the production environment:
++
+[source,text]
+----
+mkdir ~/bin
+wget http://www.opentlc.com/download/ansible_bootcamp/scripts/common.sh
+wget http://www.opentlc.com/download/ansible_bootcamp/scripts/jq-linux64 -O ~/bin/jq
+wget http://www.opentlc.com/download/ansible_bootcamp/scripts/order_svc.sh
+chmod +x order_svc.sh ~/bin/jq
+----
+
+* Steps to run the shell script to deploy the production environment from the bastion host:
++
+[source,text]
+----
+cat << EOF > credential.rc
+export username=<userid-companyname.com>
+export password=<cf password>
+export uri=https://labs.opentlc.com
+EOF
+
+source credential.rc ; ./order_svc.sh -c 'OPENTLC Automation' -i 'Three Tier Application' -t 1
+
+----
++
+[NOTE]
+Non-Interactive: Use `-y` if you do not want to be prompted and you are sure you want to
+continue.
++
+WARNING: Using this script always deploys environments in the `us-east-1` region.
+
+=== Deploy Three-Tier Application on Production Environment
+
+In this section, you deploy the three-tier application on the production environment.
+
+. Use `ec2.py` or `ec2_facts` (or similar) to create the dynamic inventory.
+* If you are using Ansible Tower inventory, use the `Instance Filter` with the following
+tag: `tag:instance_filter=three-tier-app-psrivast*` where `psrivast` is the first part of
+your company email id, as in `psrivast@redhat.com`.
+
+. Use dynamic inventory or in-memory inventory to fetch the EC2 instances' facts.
+
+. Use tested roles and playbooks to deploy the three-tier application on the production
+environment from Ansible Tower.
+
+. Test your application by browsing the public URL of the `frontend` server from your
+laptop.
++
+[NOTE]
+AWS read-only user credentials are created for you. Please provide your GUID
+to the instructor, so they can inject these credentials directly into your
+Ansible Tower environment to enable retrieving dynamic inventories from AWS.
++
+[TIP]
+All EC2 tags become groups in dynamic inventory. Use `ec2.ini` to limit the scope of
+Ansible Tower's reach.
+
+
+== Design Ansible Tower Workflow Job Templates
+
+In this section, you design a workflow job template in Ansible Tower.
+
+The diagram below shows the workflow for developing a CI/CD pipeline in Ansible
+Tower.
+
+. Use the roles and playbooks you have pushed to GitHub to create the workflow job template.
+. Promote deployments from the QA environment to the production environment.
++
+image:ansible-3tier-flow.png[]
