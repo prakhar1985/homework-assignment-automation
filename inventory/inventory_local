@@ -1,8 +1,8 @@
 [bastion_tower]
-bastion.9305.example.opentlc.com
+bastion.b58a.example.opentlc.com
 
 [workstation]
-workstation-fc81.rhpds.opentlc.com
+workstation-2e78.rhpds.opentlc.com
 
 [all:vars]
 ansible_user=psrivast-redhat.com
