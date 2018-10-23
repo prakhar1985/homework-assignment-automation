@@ -22,7 +22,7 @@
     - python-openstackclient
 - name: Install shade library
   pip:
-    name: shade 
+    name: openstacksdk 
     state: latest
 - name: Create clouds.yaml file
   blockinfile:
