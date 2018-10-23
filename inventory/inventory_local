@@ -1,11 +1,11 @@
 [bastion_tower]
-bastion.b58a.example.opentlc.com
+bastion.0d7a.example.opentlc.com
 
 [workstation]
-workstation-2e78.rhpds.opentlc.com
+workstation-95b6.rhpds.opentlc.com
 
 [all:vars]
 ansible_user=psrivast-redhat.com
-ansible_ssh_private_key_file=/Users/psrivast/.ssh/psrivast_id_rsa.pem
+ansible_ssh_private_key_file=/Users/prakhar/.ssh/psrivast_id_rsa.pem
 ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 

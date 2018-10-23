@@ -4,10 +4,10 @@
   #roles:
   # - local_inventory
 
-- hosts: workstation
-  become: yes
-  roles:
-    - setup-workstation
+#- hosts: workstation
+#  become: yes
+#  roles:
+#    - setup-workstation
 
 
 
@@ -15,6 +15,6 @@
   gather_facts: false 
   become: yes 
   roles:
-    - install-tower
+#    - install-tower
     - config-tower
 
