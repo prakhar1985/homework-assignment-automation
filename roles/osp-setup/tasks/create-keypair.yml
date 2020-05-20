@@ -5,7 +5,7 @@
     ssh_key_file: .ssh/test_id_rsa
 - name: Create OSP keypair
   os_keypair:
-    cloud: ospcloud
+    cloud: openstack
     state: present
     name: ansible_ssh
     public_key_file: "{{ ansible_env.HOME }}/.ssh/test_id_rsa.pub"

@@ -2,14 +2,14 @@
 # tasks file for osp.security
 - name: Create Security Group Apps
   os_security_group:
-    cloud: ospcloud
+    cloud: openstack
     state: present
     name: apps
     description: ports_open
 
 - name: Create Security Group Rule Apps
   os_security_group_rule:
-    cloud: ospcloud
+    cloud: openstack
     security_group: apps 
     protocol: tcp
     port_range_min: "{{ item.port }}"
@@ -21,14 +21,14 @@
 
 - name: Create Security Group Frontend
   os_security_group:
-    cloud: ospcloud
+    cloud: openstack
     state: present
     name: frontend
     description: ports_open
 
 - name: Create Security Group Rule Frontend
   os_security_group_rule:
-    cloud: ospcloud
+    cloud: openstack
     security_group: frontend 
     protocol: tcp
     port_range_min: "{{ item.port }}"
@@ -41,19 +41,19 @@
       
 - name: Create Security Group DB
   os_security_group:
-    cloud: ospcloud
+    cloud: openstack
     state: present
     name: db
     description: ports_open
 
 - name: Create Security Group Rule DB
   os_security_group_rule:
-    cloud: ospcloud
+    cloud: openstack
     security_group: db
     protocol: tcp
     port_range_min: "{{ item.port }}"
     port_range_max: "{{ item.port }}" 
     remote_ip_prefix: "{{ item.ip_prefix }}"
   with_items:
-    - { port: '5432', ip_prefix: '20.20.20.0/24' }
+    - { port: '5432', ip_prefix: '172.16.0.0/24' }
     - { port: '22', ip_prefix: '0.0.0.0/0' }

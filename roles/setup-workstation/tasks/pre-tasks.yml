@@ -5,36 +5,33 @@
      user: cloud-user
      state: present
      key: http://www.opentlc.com/download/ansible_bootcamp/openstack_keys/openstack.pub
-- name: Install EPEL repos 
-  yum:
-     name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-     state: present 
 - name: Install required packages 
   yum: 
-     name: "{{item}}"
+     name:
+       - python3
+       - git
+       - ansible
      state: latest 
-  loop: 
-    - python 
-    - python-pip 
-    - python-devel 
-    - gcc 
-    - ansible 
-    - python-openstackclient
-- name: Install shade library
-  pip:
-    name: openstacksdk 
-    state: latest
+- name: Install openstack library
+  command: pip3 install openstacksdk python-openstackclient  -U
 - name: Create clouds.yaml file
   blockinfile:
     create: yes
     path: /etc/openstack/clouds.yaml
     block: |2
       clouds:
-        ospcloud:
+        openstack:
           auth:
-            auth_url: http://192.168.0.20:5000/
-            password: r3dh4t1!
-            project_name: admin
-            username: admin
-          identity_api_version: '3.0'
-          region_name: RegionOne
+            auth_url: http://192.0.2.21:5000
+            username: "admin"
+            password: "r3dh4t1!"
+            project_id: 4e07f423a12f437388a97a533bb9eef9
+            project_name: "admin"
+            user_domain_name: "Default"
+          region_name: "regionOne"
+          interface: "public"
+          identity_api_version: 3
+        ansible:
+          use_hostnames: True
+          expand_hostvars: False
+          fail_on_errors: True
